@@ -1,0 +1,24 @@
+h1{
+  background-color: navy;
+  color:white;
+}
+#contact_info{
+  text-align: center;
+}
+img.resize{
+  width:100px;
+  height:100px;
+}
+.flex-container {
+  display: flex;
+  height: 600px;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+#work_history{
+  text-decoration: underline;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: bold;
+  font-variant: small-caps;
+}
