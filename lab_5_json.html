@@ -11,7 +11,7 @@
     <div class="wrapper">
       <div class="header">Test JSON page</div>
       <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
-      <button class="button" onclick="console.log('You haven\'t written a function yet!');">Click me to replace list entries</button>
+      <button id="button2" class="button" onclick="shuffleArray(countries)">Click me to replace list entries</button>
       <div class="content">
         <ul class="instructions">
           <li>Delete and re-clone the class repository</li>
@@ -33,7 +33,7 @@
   </div>
   <script>
     /* N.B. - For your lab, use the variable "countries" now available on the window space */
-    const countries = [
+ const countries = [
       { "name": "Afghanistan", "code": "AF" },
       { "name": "Åland Islands", "code": "AX" },
       { "name": "Albania", "code": "AL" },
@@ -278,15 +278,19 @@
       { "name": "Zambia", "code": "ZM" },
       { "name": "Zimbabwe", "code": "ZW" }
     ]
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    countries.length=50;
     console.log(countries.length);
-    Object.entries(countries).forEach(
-    ([key, value]) => sessionStorage.setItem('key', 'value'));
-    countries.length = 50;
     console.log(countries);
-    $('#next').onclick(function){
-      $('#showsecond').show();
 
-});
+}
+
+
+
       </script>
 </body>
 
