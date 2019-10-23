@@ -11,17 +11,47 @@
     <div class="wrapper">
       <div class="header">Test AJAX page</div>
       <button class="button" onclick="loadData()">Load Some JSON</button>
-      <div class="content"></div>
+      <div class="content">
+        <ol class="instructions">
+          <li>Delete and re-clone the class repository</li>
+          <li>Open <span class="code">lab_5_json.html</span> in your browser</li>
+          <li>Open your developer tools and look at the logged data</li>
+          <li>In your console, write code to:
+            <ol>
+              <li>At the click of the button above</li>
+              <li>Loop through the 'countries' variable</li>
+              <li>Replace this list's entries with country names</li>
+              <li>Now, limit the number of countries listed to fifty</li>
+              <li>Randomize which fifty countries are displayed on load</li>
+            </ol>
+          </li>
+        </ol>
+      </div>
       <div class="footer"></div>
     </div>
   </div>
   <script>
+  function getRandomInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random()*(max-min+1))+min;
+}
     function loadData() {
-      fetch('https://api.umd.io/v0/bus/routes')
+      fetch('ajax_sample.json')
         .then(res => res.json())
-        .then(res => res.map(c => c.code))
-        .then(codes => document.querySelector(".content").innerText = codes);
-    }
+        .then(res => res.map(c => c.name))
+        .then(codes => {
+          const instructions = document.querySelector('.instructions');
+          instructions.innerHTML='';
+
+          for(let i =0; i < 15; i++){
+            const selectNumber = getRandomInclusive(0,242);
+            let el = document.createElement("li");
+            el.innerText = codes[selectNumber];
+            instructions.appendChild(el);
+          }
+    })
+}
   </script>
 </body>
 
