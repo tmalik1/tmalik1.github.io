@@ -1,45 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Test AJAX page</title>
-  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+<title>Test AJAX page</title>
+<link rel="stylesheet" type="text/css" href="./lab_styles.css">
 </head>
 
 <body>
-  <div class="container">
-    <div class="wrapper">
-      <div class="header">API Loader</div>
-      <button class="button" onclick="loadData()">Load Some JSON from a server</button>
-      <div class="content"></div>
-      <div class="footer"></div>
-    </div>
+<div class="container">
+  <div class="wrapper">
+    <div class="header">API Loader</div>
+    <button class="button" onclick="loadData()">Load Some JSON from a server</button>
+    <div class="content"></div>
+    <div class="footer"></div>
   </div>
-  <script>
-    function loadData() {
-      console.log('fetch'); // confirm code is running on click
-      fetch('https://api.umd.io/v0/courses/list')
-        .then(res => res.json())
-        .then(res => {
-          console.log(res); // logging step to check what we got
-          return res;
-        })
-        .then(res => res.data.map(c => c.course_id + ": " + c.name))
-        .then(courses =>
-        {
-          document.querySelector(".list").innerHTML = "";
-          for(i=0 ; i < courses.length ; i++)
-          {
-            let node = document.createElement("LI");
-            let textnode = document.createTextNode(courses[i]);
-            node.appendChild(textnode);
-            document.querySelector(".list").appendChild(node);
-            // document.querySelector(".content").innerText = courses[i];
-          }
-
-        })
-    }
-  </script>
+</div>
+<script>
+  function loadData() {
+    console.log('fetch'); // confirm code is running on click
+    fetch('/api')
+      .then(res => res.json())
+      .then(res => {
+        console.log(res); // logging step to check what we got
+        return res;
+      })
+      .then(res => res.data.map(c => c.route_id))
+      .then(codes => document.querySelector(".content").innerText = codes);
+  }
+</script>
 </body>
 
 </html>
