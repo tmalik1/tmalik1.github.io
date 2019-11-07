@@ -24,8 +24,20 @@
           console.log(res); // logging step to check what we got
           return res;
         })
-        .then(res => res.data.map(c => c.course_id))
-        .then(codes => document.querySelector(".content").innerText = codes);
+        .then(res => res.data.map(c => c.course_id + ": " + c.name))
+        .then(courses =>
+        {
+          document.querySelector(".list").innerHTML = "";
+          for(i=0 ; i < courses.length ; i++)
+          {
+            let node = document.createElement("LI");
+            let textnode = document.createTextNode(courses[i]);
+            node.appendChild(textnode);
+            document.querySelector(".list").appendChild(node);
+            // document.querySelector(".content").innerText = courses[i];
+          }
+
+        })
     }
   </script>
 </body>
